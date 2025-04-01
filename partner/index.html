@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Become a Partner - Search + AI</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-        
-        *, *::before, *::after {
+
+        *,
+        *::before,
+        *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -31,9 +34,11 @@
             background-image: url(bg.png);
             background-position: center;
             background-size: cover;
-            background-color: #22252a; ;
+            background-color: #22252a;
+            ;
             background-repeat: no-repeat;
-            height: 75vh;  /* 占据视口高度的75% */
+            height: 75vh;
+            /* 占据视口高度的75% */
             min-height: 600px;
             max-width: none;
             display: flex;
@@ -41,7 +46,7 @@
             align-items: center;
         }
 
-        
+
 
         .header::after {
             content: "";
@@ -50,15 +55,13 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
-                repeating-linear-gradient(
-                    45deg,
-                    rgba(255,255,255,0.03) 0,
-                    rgba(255,255,255,0.03) 2px,
+            background:
+                repeating-linear-gradient(45deg,
+                    rgba(255, 255, 255, 0.03) 0,
+                    rgba(255, 255, 255, 0.03) 2px,
                     transparent 2px,
-                    transparent 6px
-                );
-                /* url('bg.svg') center/contain no-repeat; */
+                    transparent 6px);
+            /* url('bg.svg') center/contain no-repeat; */
             z-index: 1;
         }
 
@@ -68,9 +71,9 @@
             line-height: 1.2;
             margin-top: max(5vh, 80px);
             margin-bottom: 2rem;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-            font-weight: 700; 
-            letter-spacing: -0.03em; 
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: 700;
+            letter-spacing: -0.03em;
             max-width: 1200px;
             align-items: center;
             justify-content: center;
@@ -80,14 +83,15 @@
         .emphasis {
             display: inline-block;
             font-weight: 900;
-            color: #00c6ff; /* 品牌色突出 */
+            color: #00c6ff;
+            /* 品牌色突出 */
             position: relative;
             padding: 0 0.2em;
         }
 
 
         .header p {
-            color: rgba(255,255,255,0.85);
+            color: rgba(255, 255, 255, 0.85);
             font-size: 1.6rem;
             margin-bottom: 1rem;
             max-width: 1200px;
@@ -126,8 +130,9 @@
             border-radius: 1rem;
             border: rgba(255, 255, 255, 0.53) 1px solid;
             background-color: #22252a;
-            color:rgba(255, 255, 255, 0.86);
+            color: rgba(255, 255, 255, 0.86);
         }
+
         .header .cta-button:hover {
             background-color: #242832;
             border: rgba(255, 255, 255, 0.915) 1px solid;
@@ -140,6 +145,7 @@
                 transform: scale(1);
                 opacity: 1;
             }
+
             100% {
                 transform: scale(1.5);
                 opacity: 0;
@@ -151,8 +157,10 @@
             stroke-width: 0.2;
             fill: none;
             animation: pulseAnimation 2s infinite alternate;
-            transform-origin: 50% 50%; /* 确保缩放以圆心为基准 */
-            transform-box: fill-box;;
+            transform-origin: 50% 50%;
+            /* 确保缩放以圆心为基准 */
+            transform-box: fill-box;
+            ;
         }
 
         /* 确保AOS动画覆盖原始动画 */
@@ -194,11 +202,13 @@
             transform: translateX(-50%);
             width: 60%;
             height: 2px;
-            background: linear-gradient(90deg, transparent, #14174982, transparent); /* 渐变分割线 */
+            background: linear-gradient(90deg, transparent, #14174982, transparent);
+            /* 渐变分割线 */
         }
 
-        .header + .section {
-            margin-top: 2rem; /* header 后的第一个 section 距离调整 */
+        .header+.section {
+            margin-top: 2rem;
+            /* header 后的第一个 section 距离调整 */
         }
 
         .benefits-grid {
@@ -218,7 +228,7 @@
 
         .benefit-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1); 
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
         }
 
         .benefit-card:hover::after {
@@ -240,7 +250,7 @@
             color: #141749;
         }
 
-        .benefit-icon{
+        .benefit-icon {
             height: min(100px, 10rem);
             width: auto;
         }
@@ -262,7 +272,7 @@
             transition: all 0.3s ease;
         }
 
-        .step-card:hover{
+        .step-card:hover {
             transform: scale(1.15);
         }
 
@@ -270,7 +280,8 @@
             position: absolute;
             top: 0px;
             left: 0px;
-            width: 40px; /* 调整大小 */
+            width: 40px;
+            /* 调整大小 */
             height: 40px;
             background: #141749;
             color: white;
@@ -288,7 +299,8 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            padding-top: 1rem; /* 避免与 step-number 重叠 */
+            padding-top: 1rem;
+            /* 避免与 step-number 重叠 */
         }
 
         .step-icon {
@@ -340,11 +352,11 @@
             margin-top: 1rem;
         }
 
-        .testimonial-img-container{
+        .testimonial-img-container {
             display: flex;
         }
 
-        .testimonial-img{
+        .testimonial-img {
             width: 80px;
             height: 80px;
             border-radius: 50%;
@@ -357,23 +369,23 @@
             display: inline-block;
             background: #141749;
             color: white;
-            padding: 1.2rem 2.5rem; 
-            border-radius: 8px; 
+            padding: 1.2rem 2.5rem;
+            border-radius: 8px;
             text-decoration: none;
-            font-weight: 600; 
-            font-size: 1.2rem; 
-            transition: all 0.3s ease; 
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(20, 23, 73, 0.2); 
-            animation: breathe 2s infinite ease-in-out; 
+            box-shadow: 0 4px 15px rgba(20, 23, 73, 0.2);
+            animation: breathe 2s infinite ease-in-out;
         }
 
-       /* 悬停效果 */
+        /* 悬停效果 */
         .cta-button:hover {
             background: #1a1f5f;
-            transform: translateY(-2px); 
-            box-shadow: 0 6px 20px rgba(20, 23, 73, 0.3); 
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(20, 23, 73, 0.3);
             color: white;
         }
 
@@ -385,12 +397,10 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(
-                120deg,
-                rgba(255, 255, 255, 0) 20%,
-                rgba(255, 255, 255, 0.05) 50%,
-                rgba(255, 255, 255, 0) 80%
-            );
+            background: linear-gradient(120deg,
+                    rgba(255, 255, 255, 0) 20%,
+                    rgba(255, 255, 255, 0.05) 50%,
+                    rgba(255, 255, 255, 0) 80%);
             transform: rotate(30deg);
             transition: all 0.5s ease;
             pointer-events: none;
@@ -404,9 +414,11 @@
             0% {
                 transform: scale(1);
             }
+
             50% {
                 transform: scale(1.05);
             }
+
             100% {
                 transform: scale(1);
             }
@@ -417,7 +429,7 @@
             color: #666;
         }
 
-        .cta-container{
+        .cta-container {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -454,78 +466,109 @@
                 font-size: 2rem;
             }
 
-            .benefits-grid, .steps {
-                grid-template-columns: 1fr; /* 移动端单列布局 */
+            .benefits-grid,
+            .steps {
+                grid-template-columns: 1fr;
+                /* 移动端单列布局 */
                 gap: 1.5rem;
             }
-            
+
             .header h1 {
-                font-size: 2.2rem; /* 更大的标题字号 */
+                font-size: 2.2rem;
+                /* 更大的标题字号 */
                 line-height: 1.2;
             }
-            
+
             .cta-button {
-                width: 80vw; /* 全宽按钮 */
+                width: 80vw;
+                /* 全宽按钮 */
                 text-align: center;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="header">
         <h1 class="hero-title">
             <span class="gradient-text">Join Our</span><br>
             <span class="title-emphasis">Publisher Network</span>
         </h1>
-        <p>Partner with us to expand your <span class="emphasis">reach</span> and maximize your <span class="emphasis">revenue potential</span> with our innovative search technology.</p>
-        <a href="mailto:partner@maxask.com" class="cta-button">Become a Partner Today</a>
-        <svg version="1.1" viewBox="0 0 1500 600" width="120%" height="100%"  xmlns="http://www.w3.org/2000/svg" class="background-svg" data-aos="fade-in" data-aos-duration="1000">
+        <p>Partner with us to expand your <span class="emphasis">reach</span> and maximize your <span
+                class="emphasis">revenue potential</span> with our innovative search technology.</p>
+        <a href="https://forms.gle/pqL1z3SvjGnKpEVx6" class="cta-button">Become a Partner Today</a>
+        <svg version="1.1" viewBox="0 0 1500 600" width="120%" height="100%" xmlns="http://www.w3.org/2000/svg"
+            class="background-svg" data-aos="fade-in" data-aos-duration="1000">
             <defs>
                 <filter id="shadow" x="-300%" y="-300%" width="600%" height="600%">
-                    <feDropShadow dx="0" dy="0" stdDeviation="10 10" flood-color="#08c" radius="10" flood-opacity="1"></feDropShadow>
+                    <feDropShadow dx="0" dy="0" stdDeviation="10 10" flood-color="#08c" radius="10" flood-opacity="1">
+                    </feDropShadow>
                 </filter>
             </defs>
-            
+
             <!-- 调整后的路径 -->
-            <path id="svg_17" d="m1595.875212,897.875106l-1635.875221,-0.374889l1.25,-446.250108c-1.25,0.372765 481.124925,24.124892 481.124925,24.124892c0,0 247.000064,-106.250026 245.875257,-106.624912c1.124807,0.374885 125.874839,-2.125116 124.750031,-2.500001c1.124808,0.374885 108.374836,-32.125123 107.250027,-32.500008c1.124809,0.374885 140.874844,21.62489 140.874844,21.62489c0,0 124.750032,-73.750018 123.625222,-74.124903c1.124811,0.374884 129.624844,9.124887 129.624844,9.124887c0,0 105.750027,35.000009 105.750027,35.000009c0,0 173.750045,-125.000031 172.625231,-125.374915" opacity="0.5" stroke-opacity="null" stroke-width="0" stroke="#191b1e" fill="#191b1e" fill-opacity="0.4"></path>
-            <path id="svg_6" d="m1614.83437,909.61168l-1655.94553,-0.72172l1.11111,-486.66724l629.88966,30.00004l102.55568,-41.11116l122.66682,1.11111l118.22236,-34.44449l122.66682,14.44447c0.49906,0.72171 122.05477,-64.83392 122.05477,-64.83392c0,0 124.88904,4.44445 124.38998,3.72273c0.49906,0.72172 114.27698,28.49953 114.27698,28.49953c0,0 168.33353,-108.88902 167.83447,-109.61073" stroke-opacity="null" stroke-width="0" stroke="#1a1b1f" fill="#1a1b1f" fill-opacity="0.4"></path>
-            
+            <path id="svg_17"
+                d="m1595.875212,897.875106l-1635.875221,-0.374889l1.25,-446.250108c-1.25,0.372765 481.124925,24.124892 481.124925,24.124892c0,0 247.000064,-106.250026 245.875257,-106.624912c1.124807,0.374885 125.874839,-2.125116 124.750031,-2.500001c1.124808,0.374885 108.374836,-32.125123 107.250027,-32.500008c1.124809,0.374885 140.874844,21.62489 140.874844,21.62489c0,0 124.750032,-73.750018 123.625222,-74.124903c1.124811,0.374884 129.624844,9.124887 129.624844,9.124887c0,0 105.750027,35.000009 105.750027,35.000009c0,0 173.750045,-125.000031 172.625231,-125.374915"
+                opacity="0.5" stroke-opacity="null" stroke-width="0" stroke="#191b1e" fill="#191b1e" fill-opacity="0.4">
+            </path>
+            <path id="svg_6"
+                d="m1614.83437,909.61168l-1655.94553,-0.72172l1.11111,-486.66724l629.88966,30.00004l102.55568,-41.11116l122.66682,1.11111l118.22236,-34.44449l122.66682,14.44447c0.49906,0.72171 122.05477,-64.83392 122.05477,-64.83392c0,0 124.88904,4.44445 124.38998,3.72273c0.49906,0.72172 114.27698,28.49953 114.27698,28.49953c0,0 168.33353,-108.88902 167.83447,-109.61073"
+                stroke-opacity="null" stroke-width="0" stroke="#1a1b1f" fill="#1a1b1f" fill-opacity="0.4"></path>
+
             <!-- 调整后的圆点和pulse -->
             <g class="dot-group" data-aos="fade-in" data-aos-delay="250">
-                <ellipse class="dots" ry="3.5" rx="3.5" cy="453.023736" cx="560.150561" stroke-opacity="null" stroke-width="0" fill="#fff"/>
-                <circle class="pulse" r="20" cy="453.023736" cx="560.150561" stroke="#FFF" stroke-width="0.2" fill="none"/>
+                <ellipse class="dots" ry="3.5" rx="3.5" cy="453.023736" cx="560.150561" stroke-opacity="null"
+                    stroke-width="0" fill="#fff" />
+                <circle class="pulse" r="20" cy="453.023736" cx="560.150561" stroke="#FFF" stroke-width="0.2"
+                    fill="none" />
             </g>
             <g class="dot-group" data-aos="fade-in" data-aos-delay="500">
-                <ellipse class="dots" ry="3.5" rx="3.5" cy="411.595173" cx="666.341014" stroke-opacity="null" stroke-width="0" fill="#fff"/>
-                <circle class="pulse" r="20" cy="411.595173" cx="666.341014" stroke="#FFF" stroke-width="0.2" fill="none"/>
+                <ellipse class="dots" ry="3.5" rx="3.5" cy="411.595173" cx="666.341014" stroke-opacity="null"
+                    stroke-width="0" fill="#fff" />
+                <circle class="pulse" r="20" cy="411.595173" cx="666.341014" stroke="#FFF" stroke-width="0.2"
+                    fill="none" />
             </g>
             <g class="dot-group" data-aos="fade-in" data-aos-delay="750">
-                <ellipse class="dots" ry="3.5" rx="3.5" cy="412.071364" cx="792.05527" stroke-opacity="null" stroke-width="0" fill="#fff"/>
-                <circle class="pulse" r="20" cy="412.071364" cx="792.05527" stroke="#FFF" stroke-width="0.2" fill="none"/>
+                <ellipse class="dots" ry="3.5" rx="3.5" cy="412.071364" cx="792.05527" stroke-opacity="null"
+                    stroke-width="0" fill="#fff" />
+                <circle class="pulse" r="20" cy="412.071364" cx="792.05527" stroke="#FFF" stroke-width="0.2"
+                    fill="none" />
             </g>
             <g class="dot-group" data-aos="fade-in" data-aos-delay="1000">
-                <ellipse class="dots" ry="3.5" rx="3.5" cy="378.261847" cx="915.388575" stroke-opacity="null" stroke-width="0" fill="#fff"/>
-                <circle class="pulse" r="20" cy="378.261847" cx="915.388575" stroke="#FFF" stroke-width="0.2" fill="none"/>
+                <ellipse class="dots" ry="3.5" rx="3.5" cy="378.261847" cx="915.388575" stroke-opacity="null"
+                    stroke-width="0" fill="#fff" />
+                <circle class="pulse" r="20" cy="378.261847" cx="915.388575" stroke="#FFF" stroke-width="0.2"
+                    fill="none" />
             </g>
             <g class="dot-group" data-aos="fade-in" data-aos-delay="1250">
-                <ellipse class="dots" ry="3.5" rx="3.5" cy="391.595177" cx="1041.102832" stroke-opacity="null" stroke-width="0" fill="#fff"/>
-                <circle class="pulse" r="20" cy="391.595177" cx="1041.102832" stroke="#FFF" stroke-width="0.2" fill="none"/>
+                <ellipse class="dots" ry="3.5" rx="3.5" cy="391.595177" cx="1041.102832" stroke-opacity="null"
+                    stroke-width="0" fill="#fff" />
+                <circle class="pulse" r="20" cy="391.595177" cx="1041.102832" stroke="#FFF" stroke-width="0.2"
+                    fill="none" />
             </g>
             <g class="dot-group" data-aos="fade-in" data-aos-delay="1500">
-                <ellipse class="dots" ry="3.5" rx="3.5" cy="327.706436" cx="1167.769206" stroke-opacity="null" stroke-width="0" fill="#fff"/>
-                <circle class="pulse" r="20" cy="327.706436" cx="1167.769206" stroke="#FFF" stroke-width="0.2" fill="none"/>
+                <ellipse class="dots" ry="3.5" rx="3.5" cy="327.706436" cx="1167.769206" stroke-opacity="null"
+                    stroke-width="0" fill="#fff" />
+                <circle class="pulse" r="20" cy="327.706436" cx="1167.769206" stroke="#FFF" stroke-width="0.2"
+                    fill="none" />
             </g>
             <g class="dot-group" data-aos="fade-in" data-aos-delay="1750">
-                <ellipse class="dots" ry="3.5" rx="3.5" cy="332.150871" cx="1297.213343" stroke-opacity="null" stroke-width="0" fill="#fff"/>
-                <circle class="pulse" r="20" cy="332.150871" cx="1297.213343" stroke="#FFF" stroke-width="0.2" fill="none"/>
+                <ellipse class="dots" ry="3.5" rx="3.5" cy="332.150871" cx="1297.213343" stroke-opacity="null"
+                    stroke-width="0" fill="#fff" />
+                <circle class="pulse" r="20" cy="332.150871" cx="1297.213343" stroke="#FFF" stroke-width="0.2"
+                    fill="none" />
             </g>
             <g class="dot-group" data-aos="fade-in" data-aos-delay="2000">
-                <ellipse class="dots" ry="3.5" rx="3.5" cy="358.26192" cx="1414.43529" stroke-opacity="null" stroke-width="0" fill="#fff"/>
-                <circle class="pulse" r="20" cy="358.26192" cx="1414.43529" stroke="#FFF" stroke-width="0.2" fill="none"/>
+                <ellipse class="dots" ry="3.5" rx="3.5" cy="358.26192" cx="1414.43529" stroke-opacity="null"
+                    stroke-width="0" fill="#fff" />
+                <circle class="pulse" r="20" cy="358.26192" cx="1414.43529" stroke="#FFF" stroke-width="0.2"
+                    fill="none" />
             </g>
             <g class="dot-group" data-aos="fade-in" data-aos-delay="2250">
-                <ellipse class="dots" ry="3.5" rx="3.5" cy="278.817661" cx="1540.546107" stroke-opacity="null" stroke-width="0" fill="#fff"/>
-                <circle class="pulse" r="20" cy="278.817661" cx="1540.546107" stroke="#FFF" stroke-width="0.2" fill="none"/>
+                <ellipse class="dots" ry="3.5" rx="3.5" cy="278.817661" cx="1540.546107" stroke-opacity="null"
+                    stroke-width="0" fill="#fff" />
+                <circle class="pulse" r="20" cy="278.817661" cx="1540.546107" stroke="#FFF" stroke-width="0.2"
+                    fill="none" />
             </g>
         </svg>
     </div>
@@ -533,28 +576,33 @@
     <div class="section">
         <h2 class="section-title">Benefits of Partnership</h2>
         <div class="benefits-grid">
-            <div class="benefit-card" data-aos="fade-up" data-aos-delay="100"> 
+            <div class="benefit-card" data-aos="fade-up" data-aos-delay="100">
                 <img class="benefit-icon" src="Revenue.svg" alt="Benefit Icon" />
                 <h2>Increased Revenue</h2>
-                <p>Access to <span class="emphasis">premium advertisers</span> and <span class="emphasis">competitive revenue share models</span> that maximize your earning potential.</p>
+                <p>Access to <span class="emphasis">premium advertisers</span> and <span class="emphasis">competitive
+                        revenue share models</span> that maximize your earning potential.</p>
             </div>
-            
+
             <div class="benefit-card" data-aos="fade-up" data-aos-delay="100">
                 <img class="benefit-icon" src="Analytics.svg" alt="Benefit Icon" />
                 <h2>Advanced Analytics</h2>
-                <p><span class="emphasis">Detailed insights</span> and <span class="emphasis">real-time reporting</span> to optimize your performance and track your success.</p>
+                <p><span class="emphasis">Detailed insights</span> and <span class="emphasis">real-time reporting</span>
+                    to optimize your performance and track your success.</p>
             </div>
-            
+
             <div class="benefit-card" data-aos="fade-up" data-aos-delay="100">
                 <img class="benefit-icon" src="Technical.svg" alt="Benefit Icon" />
                 <h2>Technical Support</h2>
-                <p><span class="emphasis">Dedicated technical support team</span> to ensure <span class="emphasis">smooth integration</span> and <span class="emphasis">ongoing optimization</span>.</p>
+                <p><span class="emphasis">Dedicated technical support team</span> to ensure <span
+                        class="emphasis">smooth integration</span> and <span class="emphasis">ongoing
+                        optimization</span>.</p>
             </div>
-            
+
             <div class="benefit-card" data-aos="fade-up" data-aos-delay="100">
                 <img class="benefit-icon" src="Targeted.svg" alt="Benefit Icon" />
                 <h2>Targeted Results</h2>
-                <p><span class="emphasis">AI-powered search results</span> that deliver <span class="emphasis">relevant content</span> to your users, increasing engagement and satisfaction.</p>
+                <p><span class="emphasis">AI-powered search results</span> that deliver <span class="emphasis">relevant
+                        content</span> to your users, increasing engagement and satisfaction.</p>
             </div>
         </div>
     </div>
@@ -595,33 +643,37 @@
         <div class="testimonials">
             <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
                 <div class="testimonial-img-container">
-                    <img src="sarah.png" alt="Sarah Chen" class="testimonial-img"/>
+                    <img src="sarah.png" alt="Sarah Chen" class="testimonial-img" />
                 </div>
-                <p>"Since partnering with Search + AI, our search revenue has increased by 150%. The integration was seamless, and their support team is always responsive."</p>
+                <p>"Since partnering with Search + AI, our search revenue has increased by 150%. The integration was
+                    seamless, and their support team is always responsive."</p>
                 <div class="testimonial-author">- Sarah Chen, TechNews Daily</div>
             </div>
             <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
                 <div class="testimonial-img-container">
-                    <img src="michael.png" alt="Michael Rodriguez" class="testimonial-img"/>
+                    <img src="michael.png" alt="Michael Rodriguez" class="testimonial-img" />
                 </div>
-                <p>"The AI-powered search results have significantly improved our user engagement. Our bounce rate has decreased by 40% since implementation."</p>
+                <p>"The AI-powered search results have significantly improved our user engagement. Our bounce rate has
+                    decreased by 40% since implementation."</p>
                 <div class="testimonial-author">- Michael Rodriguez, Digital Trends</div>
             </div>
             <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
                 <div class="testimonial-img-container">
-                    <img src="emma.png" alt="Emma Thompson" class="testimonial-img"/>
+                    <img src="emma.png" alt="Emma Thompson" class="testimonial-img" />
                 </div>
-                <p>"The analytics dashboard provides invaluable insights that help us optimize our content strategy. It's been a game-changer for our business."</p>
+                <p>"The analytics dashboard provides invaluable insights that help us optimize our content strategy.
+                    It's been a game-changer for our business."</p>
                 <div class="testimonial-author">- Emma Thompson, Content Hub</div>
             </div>
         </div>
     </div>
 
     <div class="cta-container" style="text-align: center;">
-        <a href="mailto:partner@maxask.com" class="cta-button">Become a Partner Today</a>
+        <a href="https://forms.gle/pqL1z3SvjGnKpEVx6" class="cta-button">Become a Partner Today</a>
     </div>
 </body>
+
 </html>
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>AOS.init({duration: 800});</script>
+<script>AOS.init({ duration: 800 });</script>
