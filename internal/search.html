@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="referrer" content="origin-when-cross-origin" />
+
+    <link rel="preconnect" href="https://cse.google.com" crossorigin>
+    <link rel="preconnect" href="https://www.google.com" crossorigin>
+
+    <title>MaxAsk.com — Search</title>
+
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+            background: #fff;
+            color: #222;
+        }
+
+        .container {
+            max-width: 980px;
+            margin: 24px auto;
+            padding: 0 16px;
+        }
+
+        #glogo {
+            height: 40px;
+            margin-bottom: 12px;
+        }
+
+        .searchbox {
+            margin-bottom: 18px;
+        }
+
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 0;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="glogo" aria-hidden="true"></div>
+
+        <div class="searchbox">
+            <!-- Google Custom Search Element (single instance) -->
+            <script async src="https://cse.google.com/cse.js?cx=b59d72e777b7749d2"></script>
+            <div class="gcse-searchbox" data-gname="s1"></div>
+        </div>
+
+        <div id="results">
+            <div class="loading" id="gs_loading">Loading search...</div>
+            <div class="gcse-searchresults" data-gname="s1"></div>
+        </div>
+    </div>
+
+    <script>
+        // Minimal callbacks for CSE behavior (title update + hide loading)
+        window.__gcse = window.__gcse || {};
+        window.__gcse.searchCallbacks = {
+            web: {
+                rendered: function () {
+                    try {
+                        // try to set document title from query when available
+                        var q = (location.hash.split('gsc.q')[1] || '').split('&')[0];
+                        if (q) {
+                            var s = decodeURIComponent(q.slice(1));
+                            if (s) document.title = s + ' - Search Results';
+                        }
+                    } catch (e) { }
+                },
+                ready: function () {
+                    var l = document.getElementById('gs_loading');
+                    if (l) l.style.display = 'none';
+                }
+            },
+            image: { rendered: function () { } }
+        };
+    </script>
+
+    <script src="https://www.gstatic.com/prose/brand.js" targetId="glogo"></script>
+    <link rel="stylesheet" href="/pretty.css" />
+</body>
+
+</html>
