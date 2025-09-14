@@ -140,14 +140,15 @@
       transform: rotate(180deg);
     }
 
-    .gsce-searchbox {
+    /* google-specific 样式已移除 */
+    /* .gsce-searchbox {
       font-size: 13px;
       margin-top: 0;
       margin-right: 0;
       margin-bottom: 4px;
       margin-left: 0;
       width: 100%;
-    }
+    } */
 
     /* Container for the search box */
     .search-form {
@@ -301,13 +302,8 @@
     <div class="unfoldsearch" id="show_header"></div><!-- 显示隐藏header -->
   </div>
 
-  <div class="mainarea hide" id="googlesearh"><!-- google结果 显示隐藏增加和删除class=hide-->
-    <!-- <div class="loading-wrapper" id="gs_loading">
-            <div class="loading"></div>
-        </div> -->
-    <div class="gcse-searchresults" style="flex:60%" id="search_result">
-
-    </div>
+  <div class="mainarea hide" id="searchResults"><!-- 搜索结果区，已移除 Google Custom Search 标记 -->
+    <div style="flex:60%" id="search_result"></div>
     <div class="sidebar"><!-- Side Area --></div>
   </div>
 
@@ -368,11 +364,7 @@
     function getParam(param) {
       return new URLSearchParams(window.location.search).get(param);
     }
-    function getHashParamValue(paramName) {
-      const hash = window.location.hash.substring(1); // 获取 # 后面的字符串，并去掉 #
-      const params = new URLSearchParams(hash); // 创建 URLSearchParams 对象来解析哈希参数
-      return params.get(paramName); // 获取指定参数名的值
-    }
+    /* 已移除对 google-specific hash 参数 gsc.* 的解析 */
     function setSearchBoxValue(value) {
       document.getElementById('search-box').value = value;
     }
@@ -387,14 +379,14 @@
       document.getElementById(`result_tab_${showtabid}`).classList.add('tabitem-active');
       tabid = showtabid;
     }
-    //显示google搜索结果页，隐藏ai页
+    //显示搜索结果页，隐藏 ai 页
     function showGoogleResult(tid) {
       showTab(tid);
       let ch = document.getElementById('cse_header');
       ch.classList.remove('cse-header-hide');
       ch.classList.add('cse-header-show');
       document.getElementById('aiarea').classList.add('hide');
-      document.getElementById('googlesearh').classList.remove('hide');
+      document.getElementById('searchResults').classList.remove('hide');
       document.getElementById('show_header').classList.add('hide');
       showHeader = true;
     }
@@ -402,7 +394,7 @@
     function showAISearch(ai_q) {
       showTab(2);
       let ch = document.getElementById('cse_header');
-      document.getElementById('googlesearh').classList.add('hide');
+      document.getElementById('searchResults').classList.add('hide');
       document.getElementById('aiarea').classList.remove('hide');
       ch.classList.add('cse-header-hide');
       ch.classList.remove('cse-header-show');
@@ -439,7 +431,8 @@
   </script>
   <script>
     const aiiframe = document.getElementById('ai_iframe');
-    var tabid = getHashParamValue('gsc.tab');
+    // 使用通用 query param 'tab' 代替 google-specific hash
+    var tabid = parseInt(getParam('tab')) || 0;
     var ai_q = getSearchKeyword();
     var channel_q = new URLSearchParams(window.location.search).get('q');
     var isShowedHint = getCookie('isShowedHint');
