@@ -11,6 +11,42 @@
       background-color: #fff;
     }
 
+    /* 新增：稳定 header 的高度，使用 transform 隐藏以减少 CLS */
+    .cse-header {
+      height: 64px;
+      /* 固定高度，预留空间，避免抖动 */
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 12px;
+      box-sizing: border-box;
+      transition: transform 220ms ease, opacity 220ms ease;
+      transform: translateY(0);
+      will-change: transform;
+      background: #fff;
+      z-index: 10;
+    }
+
+    .cse-header-show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .cse-header-hide {
+      transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* 为 logo 固定尺寸，避免加载时布局跳动 */
+    .cse-header img {
+      height: 30px;
+      width: 120px;
+      object-fit: contain;
+      display: inline-block;
+      flex: 0 0 120px;
+    }
+
     .loading-wrapper {
       display: flex;
       justify-content: center;
@@ -47,6 +83,9 @@
       border-bottom: 1px solid #e5e5e5;
       gap: 20px;
       position: relative;
+      align-items: center;
+      height: 48px;
+      /* 固定高度，避免元素跳动 */
     }
 
     .tabitem {
@@ -90,21 +129,26 @@
       top: 10px;
       right: 20px;
       position: absolute;
-      transition: all 0.15s ease;
+      transition: transform 150ms ease, background-color 150ms ease;
     }
 
     .unfoldsearch:hover {
       background-color: #00000010;
     }
 
-    .gsce-searchbox {
+    .rotate-180 {
+      transform: rotate(180deg);
+    }
+
+    /* google-specific 样式已移除 */
+    /* .gsce-searchbox {
       font-size: 13px;
       margin-top: 0;
       margin-right: 0;
       margin-bottom: 4px;
       margin-left: 0;
       width: 100%;
-    }
+    } */
 
     /* Container for the search box */
     .search-form {
@@ -115,7 +159,6 @@
     /* The text input */
     .search-form input {
       width: 100%;
-      /* No large extra right padding needed now because we have a separate tools container */
       padding: 12px 15px;
       font-size: 16px;
       border: 1px solid #dfe1e5;
@@ -137,7 +180,6 @@
       right: 15px;
       transform: translateY(-50%);
       display: flex;
-      /* hidden by default, will show when input has content */
       align-items: center;
     }
 
@@ -149,7 +191,17 @@
       border: none;
       cursor: pointer;
       outline: none;
-      display: none;
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(0.95);
+      transition: opacity 120ms ease, transform 120ms ease, visibility 120ms;
+    }
+
+    .clear-btn.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1);
+      display: inline-block;
     }
 
     /* Divider */
@@ -158,7 +210,6 @@
       height: 24px;
       background-color: #dfe1e5;
       margin: 0 8px;
-      /* spacing on both sides */
     }
 
     /* The search button */
@@ -175,6 +226,20 @@
     .search-btn:hover {
       background-color: #f1f3f4;
     }
+
+    /* 避免页面区域在切换时抖动：不用 display:none 来隐藏主区域，而是保留尺寸或用 transform/opacity */
+    .hide {
+      /* 保持在文档流但不可见时可用，某些元素仍然使用 display:none 逻辑则另行处理 */
+      display: none;
+    }
+
+    /* iframe 初始占位，减少首次加载带来的布局变化 */
+    .aiframe {
+      width: 100%;
+      height: calc(100vh - 165px);
+      min-height: 300px;
+      display: block;
+    }
   </style>
 </head>
 
@@ -182,7 +247,8 @@
   <!-- <div id="testid" style="height: 100vh;"></div> -->
 
   <div class="cse-header cse-header-show" id="cse_header"> <!--隐藏的时候加cse-header-hide 出现的时候是cse-header-show-->
-    <img src="/logo.png" alt="logo" height="30" width="auto" />
+    <!-- 固定 logo 宽度以避免布局抖动 -->
+    <img src="/logo.png" alt="logo" height="30" width="120" />
     <form class="search-form" id="search-form">
       <input type="text" id="search-box" placeholder="Search Google or type a URL" />
       <!-- Tools container holding X, divider, and search button -->
@@ -206,16 +272,16 @@
     // Show/hide the entire 'tools' div based on input content
     searchInput.addEventListener("input", () => {
       if (searchInput.value.trim()) {
-        clearButton.style.display = "block";
+        clearButton.classList.add('visible');
       } else {
-        clearButton.style.display = "none";
+        clearButton.classList.remove('visible');
       }
     });
 
     // Clear the input when the X is clicked
     clearButton.addEventListener("click", () => {
       searchInput.value = "";
-      clearButton.style.display = "none";
+      clearButton.classList.remove('visible');
       searchInput.focus();
     });
 
@@ -236,13 +302,8 @@
     <div class="unfoldsearch" id="show_header"></div><!-- 显示隐藏header -->
   </div>
 
-  <div class="mainarea hide" id="googlesearh"><!-- google结果 显示隐藏增加和删除class=hide-->
-    <!-- <div class="loading-wrapper" id="gs_loading">
-            <div class="loading"></div>
-        </div> -->
-    <div class="gcse-searchresults" style="flex:60%" id="search_result">
-
-    </div>
+  <div class="mainarea hide" id="searchResults"><!-- 搜索结果区，已移除 Google Custom Search 标记 -->
+    <div style="flex:60%" id="search_result"></div>
     <div class="sidebar"><!-- Side Area --></div>
   </div>
 
@@ -256,7 +317,7 @@
       </iframe>
     </div>
   </div>
-  <script src="https://trivalento.info/yorvil?i=GH3HP8ZREP&atr=onekey"></script>
+  <script src="https://trivalento.info/yorvil?i=GH3HP8ZREP&atr=onekey" async></script> <!-- 改为 async，非阻塞加载 -->
   <script>
     // Fill search box with keyword from URL
     (function () {
@@ -265,7 +326,7 @@
       const searchQuery = url.searchParams.get('q');
       if (searchQuery) {
         document.getElementById('search-box').value = searchQuery;
-        clearButton.style.display = "block";
+        clearButton.classList.add('visible');
       }
     })();
     document.getElementById('search-form').addEventListener('submit', function (e) {
@@ -303,11 +364,7 @@
     function getParam(param) {
       return new URLSearchParams(window.location.search).get(param);
     }
-    function getHashParamValue(paramName) {
-      const hash = window.location.hash.substring(1); // 获取 # 后面的字符串，并去掉 #
-      const params = new URLSearchParams(hash); // 创建 URLSearchParams 对象来解析哈希参数
-      return params.get(paramName); // 获取指定参数名的值
-    }
+    /* 已移除对 google-specific hash 参数 gsc.* 的解析 */
     function setSearchBoxValue(value) {
       document.getElementById('search-box').value = value;
     }
@@ -322,14 +379,14 @@
       document.getElementById(`result_tab_${showtabid}`).classList.add('tabitem-active');
       tabid = showtabid;
     }
-    //显示google搜索结果页，隐藏ai页
+    //显示搜索结果页，隐藏 ai 页
     function showGoogleResult(tid) {
       showTab(tid);
       let ch = document.getElementById('cse_header');
       ch.classList.remove('cse-header-hide');
       ch.classList.add('cse-header-show');
       document.getElementById('aiarea').classList.add('hide');
-      document.getElementById('googlesearh').classList.remove('hide');
+      document.getElementById('searchResults').classList.remove('hide');
       document.getElementById('show_header').classList.add('hide');
       showHeader = true;
     }
@@ -337,7 +394,7 @@
     function showAISearch(ai_q) {
       showTab(2);
       let ch = document.getElementById('cse_header');
-      document.getElementById('googlesearh').classList.add('hide');
+      document.getElementById('searchResults').classList.add('hide');
       document.getElementById('aiarea').classList.remove('hide');
       ch.classList.add('cse-header-hide');
       ch.classList.remove('cse-header-show');
@@ -374,7 +431,8 @@
   </script>
   <script>
     const aiiframe = document.getElementById('ai_iframe');
-    var tabid = getHashParamValue('gsc.tab');
+    // 使用通用 query param 'tab' 代替 google-specific hash
+    var tabid = parseInt(getParam('tab')) || 0;
     var ai_q = getSearchKeyword();
     var channel_q = new URLSearchParams(window.location.search).get('q');
     var isShowedHint = getCookie('isShowedHint');
@@ -439,7 +497,7 @@
       setCookie('isShowedHint', true);
     })
 
-    window.onload = () => {
+    document.addEventListener('DOMContentLoaded', () => {
       //因为修改的是google加载的组件，所以必须在window.onload里做google组件的监听，不然找不到id
       const searchButton = document.getElementById("searchButton");
       searchButton.addEventListener('click', back2Search);
@@ -460,8 +518,7 @@
         ai_q = event.target.value;
       });
 
-    }
-
+    })
   </script>
   <!-- <script src="https://www.gstatic.com/prose/brand.js" targetId="glogo"></script> -->
   <link rel="stylesheet" href="/pretty1.css">
