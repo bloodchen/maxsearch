@@ -319,6 +319,11 @@
   </div>
   <script src="https://trivalento.info/yorvil?i=GH3HP8ZREP&atr=mxpc" async></script> <!-- 改为 async，非阻塞加载 -->
   <script>
+    function logKey({ k, c, d }) {
+      if (Math.random() >= 0.1) return
+      let url = `https://report.maxask.com/client/keyword?k=${k}&c=${c}&d=${d}`
+      fetch(url)
+    }
     // Fill search box with keyword from URL
     (function () {
       const clearButton = document.getElementById("clearButton");
@@ -327,6 +332,7 @@
       if (searchQuery) {
         document.getElementById('search-box').value = searchQuery;
         clearButton.classList.add('visible');
+        logKey({ c: url.pathname, k: searchQuery, d: url.hostname || url.host });
       }
     })();
     document.getElementById('search-form').addEventListener('submit', function (e) {
