@@ -302,7 +302,7 @@
     </div>
 
     <script>
-        const DOMAIN = "https://maxask.com/s/"; // 设置搜索结果域名变量
+        const DOMAIN = "https://w.maxask.com/"; // 设置搜索结果域名变量
 
         // 搜索功能
         // 定义搜索功能相关的元素
@@ -317,7 +317,7 @@
             const searchWord = searchInput.value.trim(); // 获取搜索框的值
             if (searchWord) {
                 // 构建搜索URL，tab_order默认为012 (web, image, aisearch)
-                const searchUrl = `${DOMAIN}?q=${encodeURIComponent(searchWord)}&tab_order=012`;
+                const searchUrl = `${DOMAIN}?q=${encodeURIComponent(searchWord)}&sid=maxask`;
                 window.location.href = searchUrl; // 跳转到搜索页面
             } else {
                 alert("Please enter a search term!");
